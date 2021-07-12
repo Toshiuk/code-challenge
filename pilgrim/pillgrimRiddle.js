@@ -3,27 +3,14 @@ let WINDOW_WIDTH = window.innerWidth || document.documentElement.clientWidth ||
 let WINDOW_HEIGHT = window.innerHeight || document.documentElement.clientHeight ||
     document.body.clientHeight;
 
-    const theMap = [[0,0,0,400],
-    [100,0,100,400],
-    [200,0,200,400],
-    [300,0,300,400],
-    [400,0,400,400],
-    [0,0,400,0],
-    [0,100,400,100],
-    [0,200,400,200],
-    [0,300,400,300],
-    [0,400,400,400],
-]
-    
-let circlePosition = [200, 0]
-let lastPosition = [200, 0]
-let pathRecord = [[0, 0, 100, 0], [100, 0, 200, 0]];
-let credits = 4;
-let operation = "";
+
+const mapElements = (...elements) => elements.map(element => (element * WINDOW_WIDTH)/13); 
+
+let theMap, circlePosition, lastPosition, pathRecord , taxTotal , operation = ""; 
 
 function setup() {
     createCanvas(WINDOW_WIDTH, WINDOW_HEIGHT);
-  
+    reset();
 }
 
 function windowResized() {
@@ -37,69 +24,68 @@ function windowResized() {
 function draw() {
     // base
     background(0);
-    translate(200, 200);
+    translate(WINDOW_WIDTH/8, 200);
     fill(255);
 
-    // Credits
+    // Tax
     textSize(40);
     textAlign(CENTER);
-    const templeReached = circlePosition[0] === 400 && circlePosition[1] === 400;
+    const templeReached = circlePosition[0] === 4 && circlePosition[1] === 4;
 
-    strokeWeight(2);
-    text(`Credits: ${credits} ${operation}`, 200, -100);
+    strokeWeight(1);
+    text(`Tax: ${taxTotal} ${operation}`, ...mapElements(2, -0.7));
     
     if(templeReached){
         textSize(30);
-        text(`${credits <= 0 ? "You won" : "You lost"}`, 200, -50);
+        text(`${taxTotal <= 0 ? "You won" : "You lost"}`, ...mapElements(2, -0.3));
     }
 
     // City map
     strokeWeight(4);
     stroke("#E9C46A");
-    theMap.forEach(mapLine => line(...mapLine));
+    theMap.forEach(mapLine => line(...mapElements(...mapLine)));
 
    
-    //City HUD
+    //City HUD - Temple
     strokeWeight(1);
     textSize(20);
     strokeWeight(1);
     textAlign(LEFT);
     fill("#FFFFFF");
     stroke("#2A9D8F");
-    text("Temple", 420, 400);
+    text("Temple", ...mapElements(4.2,4));
     fill("#2A9D8F");
-    circle(400, 400, 30);
+    circle(...mapElements(4,4), 30);
 
 
     // Traveler position
     strokeWeight(4);
     stroke("#3A2D72");
     fill("#3A2D72");
-    circle(...circlePosition, 20);
-    pathRecord.forEach(pathRecordLine => line(...pathRecordLine));
-
+    circle(...mapElements(...circlePosition), 20);
+    pathRecord.forEach(pathRecordLine => line(...mapElements(...pathRecordLine)));
    
-    //City HUD
+    //City HUD - Gate
     strokeWeight(1);
     textSize(20);
     strokeWeight(1);
     fill("#FFFFFF");
     stroke("#264653");
     textAlign(RIGHT);
-    text("Gate", -20, 0);
+    text("Gate", ...mapElements(-0.2, 0));
     fill("#264653");
-    circle(0, 0, 30);
+    circle(...mapElements(0,0), 30);
  
 
-    //City HUD
+    //City HUD - Coordinates
     strokeWeight(1);
     textSize(40);
     fill("#FFFFFF");
     textAlign(RIGHT);
-    text("-2", WINDOW_WIDTH -300, WINDOW_HEIGHT -400);
-    text("+2", WINDOW_WIDTH -500, WINDOW_HEIGHT -400);
-    text("÷2", WINDOW_WIDTH -400, WINDOW_HEIGHT -300);
-    text("x2", WINDOW_WIDTH -400, WINDOW_HEIGHT -500);
+    text("+2", WINDOW_WIDTH -300, WINDOW_HEIGHT -400);
+    text("-2", WINDOW_WIDTH -500, WINDOW_HEIGHT -400);
+    text("x2", WINDOW_WIDTH -400, WINDOW_HEIGHT -300);
+    text("÷2", WINDOW_WIDTH -400, WINDOW_HEIGHT -500);
     strokeWeight(3);
     stroke("#FFFFFF");
     noFill();
@@ -118,34 +104,34 @@ function keyPressed() {
     let newCirclePosition
     switch (keyCode){
         case LEFT_ARROW:
-            newCirclePosition = generateNewCirclePosition(-100,0);
+            newCirclePosition = generateNewCirclePosition(-1,0);
             if(isPathPossible(...lastPosition, ...newCirclePosition)){
                 circlePosition = newCirclePosition;
-                credits -= 2;
+                taxTotal -= 2;
                 operation = "-2";
             }
             break;
         case RIGHT_ARROW:
-            newCirclePosition = generateNewCirclePosition(100,0);
+            newCirclePosition = generateNewCirclePosition(1,0);
             if(isPathPossible(...lastPosition, ...newCirclePosition)){
                 circlePosition = newCirclePosition;
-                credits += 2;
+                taxTotal += 2;
                 operation = "+2";
             }
             break;
         case UP_ARROW:
-            newCirclePosition = generateNewCirclePosition(0,-100);
+            newCirclePosition = generateNewCirclePosition(0,-1);
             if(isPathPossible(...lastPosition, ...newCirclePosition)){
                 circlePosition = newCirclePosition;
-                credits /= 2;
+                taxTotal /= 2;
                 operation = "÷2";
             }
             break;
         case DOWN_ARROW:
-            newCirclePosition = generateNewCirclePosition(0,100);
+            newCirclePosition = generateNewCirclePosition(0,1);
             if(isPathPossible(...lastPosition, ...newCirclePosition)){
                 circlePosition = newCirclePosition;
-                credits *= 2;
+                taxTotal *= 2;
                 operation = "x2";
             }
         break;
@@ -165,7 +151,7 @@ const generateNewCirclePosition = (x,y) => {
      if( x < 0 || y < 0){
         return [Math.max(circlePosition[0] + x, 0), Math.max(circlePosition[1]+ y, 0)];
     } else {
-        return [Math.min(circlePosition[0] + x, 400), Math.min(circlePosition[1]+ y, 400)];
+        return [Math.min(circlePosition[0] + x, 4), Math.min(circlePosition[1]+ y, 4)];
     }
 }
 
@@ -175,8 +161,20 @@ const isPathPossible = (p1x, p1y, p2x, p2y) => {
 }
 
 const reset = () => {
-    circlePosition = [200, 0]
-    lastPosition = [200, 0]
-    pathRecord = [[0, 0, 100, 0], [100, 0, 200, 0]];
-    credits = 4;
+    circlePosition = [2,0]
+    lastPosition = [1,0]
+    pathRecord = [[0,0,1,0], [1,0, 2,0]];
+    taxTotal = 4;
+    theMap = [[0,0,0,4],
+    [1,0,1,4],
+    [2,0,2,4],
+    [3,0,3,4],
+    [4,0,4,4],
+    [0,0,4,0],
+    [0,1,4,1],
+    [0,2,4,2],
+    [0,3,4,3],
+    [0,4,4,4],
+]
+
 }
