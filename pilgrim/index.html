@@ -12,18 +12,38 @@
 </head>
 
 <body>
-    <div class="instructions">
+    <div id="instructions">
+        <span id="close">X</span>
         <h2>The Pilgrim riddle</h2>
-        <ol>
-            <li>You already walked 2 blocks and your tax total now is 4.</li>
-            <li>Your total increases by two for every block you walk east, and decreases by two for every block you walk west.</li>
-            <li>Your total doubles for every block you walk south and is cut in half for every block you walk north.</li>
-            <li>Your tax total during the journey may be either positive or negative, but must be zero when you reach temple.</li>
-            <li>Once you have walked through a block you may not pass through it again in any direction.</li>
-            <li>You may pass through the same intersection twice.</li>
-            <li>You have no money and no way of earning it through any means outside of walking tax.</li>
-            <li>Your tax due immediately upon arriving at the temple.</li>
+        <ol id="steps">
+
+            <li id="step-1" class="step show">
+                <div>Your objective is to reach the temple with 0 Tax</div>
+            </li>
+            <li id="step-2" class="step">
+                <div>You already walked 2 blocks and your tax total now is 4.</div>
+            </li>
+            <li id="step-3" class="step">
+                <div>Your total increases by two <i>(+2)</i> for every block you walk east
+                    <i>(right)</i>,
+                    and decreases by two
+                    <i>(-2)</i> for every
+                    block you walk west <i>(left)</i>, doubles <i>(x2)</i> for every block you walk south
+                    <i>(down)</i> and is cut in half <i>(÷2)</i>
+                    for every block you walk
+                    north <i>(top)</i>.
+                </div>
+            </li>
+            <li id="step-4" class="step">
+                <div>You may pass through the same <b>intersection</b> twice but not same
+                    <b>path</b></div>
+            </li>
         </ol>
+        <div id="navigation">
+            <span id="prev" class="navIcon hide">←</span>
+            <span id="next" class="navIcon">→</span>
+            <span id="start" class="navIcon hide">Start</span>
+        </div>
     </div>
     <main></main>
     <ul>
@@ -32,9 +52,74 @@
         <li><a href="https://www.youtube.com/watch?v=6sBB-gRhfjE" target="_blank">Walkthrough/Solution</a></li>
     </ul>
 </body>
+
+
+<script>
+    let step = 1;
+    document.getElementById("close").addEventListener("click", () => {
+        document.getElementById("instructions").classList.add("hide");
+        document.getElementsByClassName("step").forEach(step => step.classList.remove("hide"));
+    });
+
+    document.getElementById("start").addEventListener("click", () => {
+        document.getElementById("instructions").classList.add("hide");
+        document.getElementsByClassName("step").forEach(step => step.classList.remove("hide"));
+    });
+
+    document.getElementById("next").addEventListener("click", () => {
+        step === 1 && document.getElementById("prev").classList.remove("hide");
+        if (step === 3) {
+            document.getElementById("start").classList.remove("hide");
+            document.getElementById("next").classList.add("hide");
+        }
+        document.getElementById(`step-${step}`).classList.remove("show");
+        document.getElementById(`step-${++step}`).classList.add("show")
+    })
+
+    document.getElementById("prev").addEventListener("click", () => {
+        step === 2 && document.getElementById("prev").classList.add("hide");
+        if (step === 4) {
+            document.getElementById("start").classList.add("hide");
+            document.getElementById("next").classList.remove("hide");
+        }
+
+        document.getElementById(`step-${step}`).classList.remove("show");
+        document.getElementById(`step-${--step}`).classList.add("show")
+    })
+</script>
+
 <style>
     * {
         margin: 0;
+    }
+
+    #steps {
+        height: 70%;
+        display: flex;
+        align-items: center;
+        padding: 0 55px;
+    }
+
+    .step {
+        width: 0;
+        opacity: 0;
+        overflow: hidden;
+        font-size: 25px;
+        transition: ease-out width 0.5s;
+    }
+
+    .step div {
+        min-width: 20vw;
+    }
+
+    .step.show {
+        width: 100%;
+        display: block;
+        opacity: 1;
+    }
+
+    .hide {
+        display: none;
     }
 
     body {
@@ -42,17 +127,33 @@
         color: white;
     }
 
+    #close {
+        position: absolute;
+        right: 20px;
+        cursor: pointer;
+    }
 
+    #navigation {
+        display: flex;
+        justify-content: space-around;
+    }
 
-    .instructions {
+    .navIcon {
+        font-size: 43px;
+        cursor: pointer;
+    }
+
+    #instructions {
         position: absolute;
         width: 40%;
         padding: 20px;
-        right: 0;
-        background: rgba(200,200,200,0.2);
+        right: calc(50% - 20%);
+        background: rgba(30, 30, 30, 0.95);
+        top: 120px;
+        height: 400px;
     }
 
-    h2{
+    h2 {
         margin-bottom: 10px;
     }
 
@@ -61,7 +162,7 @@
         width: 30%;
         top: 45px;
     }
-    
+
     li {
         margin-bottom: 10px;
     }
