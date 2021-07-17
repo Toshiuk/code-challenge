@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stout</title>
+</head>
+
+<body>
+    <div id="stoutList">
+
+    </div>
+</body>
+
+</html>
+
+<style>
+    body {
+        background-size: 100%;
+        background: black url(wallpaper.jpeg) no-repeat;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    #stoutList {
+        list-style-type: none;
+    }
+
+    img {
+        width: 75px;
+    }
+</style>
+
+<script>
+    setInterval(() => {
+        const stout = document.createElement("img")
+        stout.src = "./stout.png"
+        document.getElementById("stoutList").appendChild(stout);
+    }, 473)
+</script>
