@@ -1,42 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stout</title>
-</head>
+  </head>
 
-<body>
-    <div id="stoutList">
-
+  <body>
+    <div id="playOverlay">
+      <div id="playButton">
+        <div id="playIcon"></div>
+      </div>
     </div>
-</body>
-
+    <div id="stoutList"></div>
+    <div id="audioWrapper">
+      <audio id="audio">
+        <source src="stout.mp3" type="audio/mp3" />
+      </audio>
+    </div>
+  </body>
 </html>
 
 <style>
-    body {
-        background-size: 100%;
-        background: black url(wallpaper.jpeg) no-repeat;
-        height: 100vh;
-        overflow: hidden;
-    }
+  body {
+    background-size: 100%;
+    background: black url(wallpaper.jpeg) no-repeat;
+    height: 100vh;
+    overflow: hidden;
+  }
 
-    #stoutList {
-        list-style-type: none;
-    }
+  #stoutList {
+    list-style-type: none;
+  }
 
-    img {
-        width: 75px;
-    }
+  img {
+    width: 75px;
+  }
+
+  #playOverlay {
+    background: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+    z-index: 9999;
+  }
+  #playOverlay.corner {
+    background: transparent;
+  }
+  #playButton {
+    background: white;
+    border: 2px solid black;
+    border-radius: 125px;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: absolute;
+    margin-top: -125px;
+    margin-left: -125px;
+    padding: 25px 0 0 70px;
+    left: 50%;
+    top: 50%;
+    height: 250px;
+    width: 250px;
+  }
+  .corner #playButton {
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 10px;
+    left: 0;
+    top: auto;
+    bottom: 0;
+    height: 120px;
+    width: 100px;
+  }
+  #playIcon {
+    border-color: transparent transparent transparent #111;
+    border-style: solid;
+    border-width: 100px 0 100px 150px;
+  }
+  .corner #playIcon {
+    border-width: 50px 0 50px 75px;
+  }
 </style>
 
 <script>
+  document.getElementById("playOverlay").addEventListener("click", function () {
+    document.getElementById("audio").play();
+    this.style.display = "none";
     setInterval(() => {
-        const stout = document.createElement("img")
-        stout.src = "./stout.png"
-        document.getElementById("stoutList").appendChild(stout);
-    }, 473)
+      const stout = document.createElement("img");
+      stout.src = "./stout.png";
+      document.getElementById("stoutList").appendChild(stout);
+    }, 473);
+  });
 </script>
