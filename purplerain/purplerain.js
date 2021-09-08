@@ -13,8 +13,8 @@ const settings = {
   backgroundColor: "#E6E6FA",
   rainColor: "#8A2BE2",
   dropEffectColor: "#8A2BE2",
-  rainDropsNumber: 2,
-  dropEffectDistance: 10,
+  rainDropsNumber: 500,
+  dropEffectDistance: 18,
   maxSpeed: 20,
   wind: 5,
 };
