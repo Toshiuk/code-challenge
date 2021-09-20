@@ -1,6 +1,6 @@
 [![LinkedIn-FrontEnd][linkedin-shield]][linkedin-url-1]
 
-# Starfield
+# Pilgrim riddle
 
 <p align="center">
   <p align="center">
@@ -8,17 +8,23 @@
   </p>
 </p>
 
-<!-- <p align="center">
+<p align="center">
   <img align="center" src="example.gif" />
-</p> -->
+</p>
 
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
 
-XXX To write...
+While I was looking at a Ted-Ed riddle video I decided to move this problem to a place where it would be easier to test the possible paths.
 
 Reference video: https://www.youtube.com/watch?v=6sBB-gRhfjE
+
+### Todo
+
+- Increment layout
+
+<sup>If you think you can help, just crate a pull request, I will be grateful ;)</sup>
 
 ### Libraries used
 
