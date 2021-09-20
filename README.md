@@ -21,11 +21,11 @@ I will be adding in this repository a bunch of projects, which will be mainly fo
 
 ## Projects (Click in the image to preview it)
 
-|                                                                                                                                            |                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| <p >Starfield [<img align="center" src="./starfield/example.gif" />](https://toshiuk.github.io/code-challenge/starfield/)</p>              | <p >Purple rain [<img align="center"  src="./purplerain/example.gif" />](https://toshiuk.github.io/code-challenge/purplerain/)</p> |
-| <p >Terrain flight [<img align="center" src="./terrainFlight/example.gif" />](https://toshiuk.github.io/code-challenge/terrainFlight/)</p> | <p > Pilgrim riddle [<img align="center"  src="./pilgrim/example.gif" />](https://toshiuk.github.io/code-challenge/pilgrim/)</p>   |
-| <p > Stout (FrankerZ copy) [<img align="center" src="./stout/example.gif" />](https://toshiuk.github.io/code-challenge/stout/)</p>         |                                                                                                                                    |
+|                                                                                                                                                          |                                                                                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| <p align="center">Starfield [<img align="center" src="./starfield/example.gif" />](https://toshiuk.github.io/code-challenge/starfield/)</p>              | <p align="center">Purple rain [<img align="center"  src="./purplerain/example.gif" />](https://toshiuk.github.io/code-challenge/purplerain/)</p> |
+| <p align="center">Terrain flight [<img align="center" src="./terrainFlight/example.gif" />](https://toshiuk.github.io/code-challenge/terrainFlight/)</p> | <p align="center"> Pilgrim riddle [<img align="center"  src="./pilgrim/example.gif" />](https://toshiuk.github.io/code-challenge/pilgrim/)</p>   |
+| <p align="center"> Stout (FrankerZ copy) [<img align="center" src="./stout/example.gif" />](https://toshiuk.github.io/code-challenge/stout/)</p>         |                                                                                                                                                  |
 
 More info inside each project folder ;)
 
