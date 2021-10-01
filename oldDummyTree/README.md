@@ -1,10 +1,10 @@
 [![LinkedIn-FrontEnd][linkedin-shield]][linkedin-url-1]
 
-# Terrain Flight
+# Old dummy tree
 
 <p align="center">
   <p align="center">
-    <a href="https://toshiuk.github.io/code-challenge/dummyOldTree/">View project</a>
+    <a href="https://toshiuk.github.io/code-challenge/oldDummyTree/">View project</a>
   </p>
 </p>
 
